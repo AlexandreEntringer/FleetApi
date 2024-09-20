@@ -45,9 +45,4 @@ public class MotivosController {
         motivosService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
-    
-    @GetMapping("/test")
-    public String testEndpoint() {
-        return "Test endpoint is working!";
-    }
 }
