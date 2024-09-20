@@ -1,7 +1,7 @@
 package com.api.fleet.controller;
 
-import com.api.fleet.entity.Veiculos;
-import com.api.fleet.service.VeiculosService;
+import com.api.fleet.entity.Rotas;
+import com.api.fleet.service.RotasService;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,33 +16,33 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author Fabricio Aleixo
+ * @author alexandre.entringer
  */
 @RestController
-@RequestMapping("/veiculos")
-public class VeiculosController {
+@RequestMapping("/rotas")
+public class RotasController {
     @Autowired
-    private VeiculosService veiculosService;
+    private RotasService rotasService;
 
     @GetMapping
-    public List<Veiculos> getAllVeiculos() {
-        return veiculosService.findAll();
+    public List<Rotas> getAllVeiculos() {
+        return rotasService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Veiculos> getVeiculosById(@PathVariable Long id) {
-        Optional<Veiculos> veiculos = veiculosService.findById(id);
-        return veiculos.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<Rotas> getVeiculosById(@PathVariable Long id) {
+        Optional<Rotas> rotas = rotasService.findById(id);
+        return rotas.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Veiculos createMotivos(@RequestBody Veiculos veiculos) {
-        return veiculosService.save(veiculos);
+    public Rotas createMotivos(@RequestBody Rotas rotas) {
+        return rotasService.save(rotas);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteMotivos(@PathVariable Long id) {
-        veiculosService.deleteById(id);
+        rotasService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 }
