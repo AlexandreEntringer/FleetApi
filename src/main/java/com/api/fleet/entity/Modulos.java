@@ -1,5 +1,6 @@
 package com.api.fleet.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,8 +23,12 @@ public class Modulos {
     private Long id;
     @Column(name = "descricao")
     private String descricao;
-    @Column(name = "data_criacao")
-    private Date dataCriacao;
+    @Column(name = "data_registro")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
+    private Date dataRegistro;
+    @Column(name = "data_inativacao")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
+    private Date dataInativacao;
 
     public Long getId() {
         return id;
@@ -41,15 +46,27 @@ public class Modulos {
         this.descricao = descricao;
     }
 
-    public Date getDataCriacao() {
-        return dataCriacao;
+    public Date getDataRegistro() {
+        return dataRegistro;
     }
 
-    public void setDataCriacao(Date dataCriacao) {
-        this.dataCriacao = dataCriacao;
+    public void setDataRegistro(Date dataRegistro) {
+        this.dataRegistro = dataRegistro;
+    }
+    
+    public Date getDataInativacao() {
+        return dataInativacao;
     }
 
+    public void setDataInativacao(Date dataInativacao) {
+        this.dataInativacao = dataInativacao;
+    }  
+    
     public Modulos() {
+    }
+    
+    public Modulos(String descricao) {
+        this.descricao = descricao;
     }
 
     @Override
@@ -73,10 +90,9 @@ public class Modulos {
         final Modulos other = (Modulos) obj;
         return Objects.equals(this.id, other.id);
     }
-
+    
     @Override
     public String toString() {
-        return "Modulos{" + "id=" + id + ", descricao=" + descricao + ", dataCriacao=" + dataCriacao + '}';
-    }
-    
+        return "Modulos{" + "id=" + id + ", descricao=" + descricao + ", dataRegistro=" + dataRegistro + ", dataInativacao=" + dataInativacao + '}';
+    }    
 }
