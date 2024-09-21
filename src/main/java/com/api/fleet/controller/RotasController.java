@@ -25,23 +25,23 @@ public class RotasController {
     private RotasService rotasService;
 
     @GetMapping
-    public List<Rotas> getAllVeiculos() {
+    public List<Rotas> getAllRotas() {
         return rotasService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Rotas> getVeiculosById(@PathVariable Long id) {
+    public ResponseEntity<Rotas> getRotasById(@PathVariable Long id) {
         Optional<Rotas> rotas = rotasService.findById(id);
         return rotas.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Rotas createMotivos(@RequestBody Rotas rotas) {
+    public Rotas createRotas(@RequestBody Rotas rotas) {
         return rotasService.save(rotas);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteMotivos(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteRotas(@PathVariable Long id) {
         rotasService.deleteById(id);
         return ResponseEntity.noContent().build();
     }

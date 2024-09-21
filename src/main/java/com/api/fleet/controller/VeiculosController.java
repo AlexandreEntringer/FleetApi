@@ -36,12 +36,12 @@ public class VeiculosController {
     }
 
     @PostMapping
-    public Veiculos createMotivos(@RequestBody Veiculos veiculos) {
+    public Veiculos createVeiculos(@RequestBody Veiculos veiculos) {
         return veiculosService.save(veiculos);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteMotivos(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteVeiculos(@PathVariable Long id) {
         veiculosService.deleteById(id);
         return ResponseEntity.noContent().build();
     }

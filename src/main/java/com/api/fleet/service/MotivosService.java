@@ -2,6 +2,7 @@ package com.api.fleet.service;
 
 import com.api.fleet.entity.Motivos;
 import com.api.fleet.repository.MotivosRepository;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,8 @@ public class MotivosService {
     }
 
     public void deleteById(Long id) {
-        motivosRepository.deleteById(id);
+        Motivos motivos = motivosRepository.findById(id).orElse(null);
+        motivos.setDataInativacao(new Date());
+        motivosRepository.save(motivos);
     }
 }
