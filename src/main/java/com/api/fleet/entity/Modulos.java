@@ -24,10 +24,10 @@ public class Modulos {
     @Column(name = "descricao")
     private String descricao;
     @Column(name = "data_registro")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo")
     private Date dataRegistro;
     @Column(name = "data_inativacao")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo")
     private Date dataInativacao;
 
     public Long getId() {
