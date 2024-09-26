@@ -1,5 +1,6 @@
 package com.api.fleet.entity;
 
+import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -9,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -34,6 +36,21 @@ public class Agendamentos {
     @JoinColumn(name = "id_veiculo", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Veiculos veiculo;
+    @Column(name = "status")
+    @Basic(optional = false)
+    private Integer status;
+    @Column(name = "data_registro")
+    @Basic(optional = false)
+    private Date dataRegistro;
+    @Column(name = "data_inativacao")
+    private Date dataInativacao;
+    @Column(name = "data_inicio")
+    @Basic(optional = false)
+    private Date dataInicio;
+    @Column(name = "data_fim")
+    @Basic(optional = false)
+    private Date dataFim;
+    
 
     public Long getId() {
         return id;
@@ -75,6 +92,46 @@ public class Agendamentos {
         this.veiculo = veiculo;
     }
 
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Date getDataRegistro() {
+        return dataRegistro;
+    }
+
+    public void setDataRegistro(Date dataRegistro) {
+        this.dataRegistro = dataRegistro;
+    }
+
+    public Date getDataInativacao() {
+        return dataInativacao;
+    }
+
+    public void setDataInativacao(Date dataInativacao) {
+        this.dataInativacao = dataInativacao;
+    }
+
+    public Date getDataInicio() {
+        return dataInicio;
+    }
+
+    public void setDataInicio(Date dataInicio) {
+        this.dataInicio = dataInicio;
+    }
+
+    public Date getDataFim() {
+        return dataFim;
+    }
+
+    public void setDataFim(Date dataFim) {
+        this.dataFim = dataFim;
+    }
+
     public Agendamentos() {
     }
 
@@ -102,6 +159,6 @@ public class Agendamentos {
 
     @Override
     public String toString() {
-        return "Agendamentos{" + "id=" + id + ", usuario=" + usuario + ", motivo=" + motivo + ", rota=" + rota + ", veiculo=" + veiculo + '}';
+        return "Agendamentos{" + "id=" + id + ", usuario=" + usuario + ", motivo=" + motivo + ", rota=" + rota + ", veiculo=" + veiculo + ", status=" + status + ", dataRegistro=" + dataRegistro + ", dataInativacao=" + dataInativacao + ", dataInicio=" + dataInicio + ", dataFim=" + dataFim + '}';
     }
 }
