@@ -39,14 +39,7 @@ public class ModulosService {
         Modulos modulos = modulosRepository.findById(id).orElse(null);
 
         if (modulos != null) {
-            // Atualiza os campos permitidos e valida existencia para alterar
-            if(modulosAtualizado.getDataRegistro() != null){
-                modulos.setDataRegistro(modulosAtualizado.getDataRegistro());
-            }
-            if(modulosAtualizado.getDataInativacao()!= null){
-                modulos.setDataInativacao(modulosAtualizado.getDataInativacao());
-            }
-            modulos.setDescricao(modulosAtualizado.getDescricao());
+            modulos.setDescricao(modulosAtualizado.getDescricao());            
 
             // Salva as alterações
             modulosRepository.save(modulos);
