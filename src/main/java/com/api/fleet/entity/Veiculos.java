@@ -26,8 +26,8 @@ public class Veiculos {
     private String placa;
     @Column(name = "chassi")
     private String chassi;
-    @Column(name = "data_cadastro")
-    private Date dataCadastro;
+    @Column(name = "data_registro")
+    private Date dataRegistro;
     @Column(name = "data_inativacao")
     private Date dataInativacao;
     @Column(name = "data_status")
@@ -65,12 +65,12 @@ public class Veiculos {
         this.chassi = chassi;
     }
 
-    public Date getDataCadastro() {
-        return dataCadastro;
+    public Date getDataRegistro() {
+        return dataRegistro;
     }
 
-    public void setDataCadastro(Date dataCadastro) {
-        this.dataCadastro = dataCadastro;
+    public void setDataRegistro(Date dataRegistro) {
+        this.dataRegistro = dataRegistro;
     }
 
     public Date getDataInativacao() {
@@ -116,7 +116,7 @@ public class Veiculos {
 
     @Override
     public String toString() {
-        return "Veiculos{" + "id=" + id + ", modelo=" + modelo + ", placa=" + placa + ", chassi=" + chassi + ", dataCadastro=" + dataCadastro + ", dataInativacao=" + dataInativacao + ", status=" + status + '}';
+        return "Veiculos{" + "id=" + id + ", modelo=" + modelo + ", placa=" + placa + ", chassi=" + chassi + ", dataRegistro=" + dataRegistro + ", dataInativacao=" + dataInativacao + ", status=" + status + '}';
     }
-    
+
 }

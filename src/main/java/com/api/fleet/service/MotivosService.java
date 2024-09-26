@@ -30,9 +30,33 @@ public class MotivosService {
         return motivosRepository.save(motivos);
     }
 
-    public void deleteById(Long id) {
+    public String updateMotivos(Long id, Motivos motivosAtualizado) {
+        // Busca o módulo existente no banco de dados
         Motivos motivos = motivosRepository.findById(id).orElse(null);
-        motivos.setDataInativacao(new Date());
-        motivosRepository.save(motivos);
+
+        if (motivos != null) {
+            motivos.setDescricao(motivosAtualizado.getDescricao());
+
+            // Salva as alterações
+            motivosRepository.save(motivos);
+            return "Registro atualizado com sucesso!";
+        } else {
+            return "Registro não encontrado!";
+        }
+    }
+
+    public String deleteById(Long id) {
+        Motivos motivos = motivosRepository.findById(id).orElse(null);
+        if (motivos == null) {
+            return "Registro não encontrado!";
+        } else if (motivos.getDataInativacao() != null) {
+            motivos.setDataInativacao(null);
+            motivosRepository.save(motivos);
+            return "Registro ativado com sucesso!";
+        } else {
+            motivos.setDataInativacao(new Date());
+            motivosRepository.save(motivos);
+            return "Registro inativado com sucesso!";
+        }
     }
 }

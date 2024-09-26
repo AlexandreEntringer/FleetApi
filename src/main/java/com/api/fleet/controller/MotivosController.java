@@ -1,11 +1,12 @@
 package com.api.fleet.controller;
+
 import com.api.fleet.entity.Motivos;
-import com.api.fleet.repository.MotivosRepository;
 import com.api.fleet.service.MotivosService;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,15 +45,23 @@ public class MotivosController {
         return motivosService.save(motivos);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteMotivos(@PathVariable Long id) {
-        motivosService.deleteById(id);
-        return ResponseEntity.noContent().build();
-    }
-    
     @PutMapping("/{id}")
-    public ResponseEntity<Motivos> updateMotivo(@PathVariable Long id, @RequestBody Motivos motivos) {
-        motivosService.save(motivos);
-        return ResponseEntity.ok(motivos);
+    public ResponseEntity<String> updateMotivos(@PathVariable Long id, @RequestBody Motivos motivos) {
+        String resposta = motivosService.updateMotivos(id, motivos);
+        if ("Registro não encontrado!".equals(resposta)) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resposta);
+        } else {
+            return ResponseEntity.ok(resposta);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteMotivos(@PathVariable Long id) {
+        String resposta = motivosService.deleteById(id);
+        if ("Registro não encontrado!".equals(resposta)) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resposta);
+        } else {
+            return ResponseEntity.ok(resposta);
+        }
     }
 }

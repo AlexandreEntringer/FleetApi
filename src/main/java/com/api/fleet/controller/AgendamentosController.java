@@ -1,12 +1,12 @@
 package com.api.fleet.controller;
 
 import com.api.fleet.entity.Agendamentos;
-import com.api.fleet.entity.Motivos;
 import com.api.fleet.service.AgendamentosService;
-import com.api.fleet.service.MotivosService;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/agendamentos")
 public class AgendamentosController {
-    
+
     @Autowired
     private AgendamentosService agendamentosService;
 
@@ -41,18 +41,27 @@ public class AgendamentosController {
 
     @PostMapping
     public Agendamentos createAgendamentos(@RequestBody Agendamentos agendamentos) {
+        agendamentos.setDataRegistro(new Date());
         return agendamentosService.save(agendamentos);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteAgendamentos(@PathVariable Long id) {
-        agendamentosService.deleteById(id);
-        return ResponseEntity.ok().build();
-    }
-    
     @PutMapping("/{id}")
-    public ResponseEntity<Agendamentos> updateAgendamentos(@PathVariable Long id, @RequestBody Agendamentos agendamentos) {
-        agendamentosService.save(agendamentos);
-        return ResponseEntity.ok(agendamentos);
+    public ResponseEntity<String> updateAgendamentos(@PathVariable Long id, @RequestBody Agendamentos agendamentos) {
+        String resposta = agendamentosService.updateModulos(id, agendamentos);
+        if ("Registro não encontrado!".equals(resposta)) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resposta);
+        } else {
+            return ResponseEntity.ok(resposta);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteAgendamentos(@PathVariable Long id) {
+        String resposta = agendamentosService.deleteById(id);
+        if ("Registro não encontrado!".equals(resposta)) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resposta);
+        } else {
+            return ResponseEntity.ok(resposta);
+        }
     }
 }

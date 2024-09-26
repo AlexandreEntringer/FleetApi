@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ModulosService {
-    
+
     @Autowired
     private ModulosRepository modulosRepository;
 
@@ -33,13 +33,13 @@ public class ModulosService {
     public Modulos save(Modulos modulos) {
         return modulosRepository.save(modulos);
     }
-    
-     public String updateModulos(Long id, Modulos modulosAtualizado) {
+
+    public String updateModulos(Long id, Modulos modulosAtualizado) {
         // Busca o módulo existente no banco de dados
         Modulos modulos = modulosRepository.findById(id).orElse(null);
 
         if (modulos != null) {
-            modulos.setDescricao(modulosAtualizado.getDescricao());            
+            modulos.setDescricao(modulosAtualizado.getDescricao());
 
             // Salva as alterações
             modulosRepository.save(modulos);
@@ -48,20 +48,20 @@ public class ModulosService {
             return "Registro não encontrado!";
         }
     }
-    
+
     public String deleteById(Long id) {
         Modulos modulos = modulosRepository.findById(id).orElse(null);
-        if(modulos == null){
+        if (modulos == null) {
             return "Registro não encontrado!";
-        }else if(modulos.getDataInativacao() != null){
+        } else if (modulos.getDataInativacao() != null) {
             modulos.setDataInativacao(null);
             modulosRepository.save(modulos);
             return "Registro ativado com sucesso!";
-        }else{
+        } else {
             modulos.setDataInativacao(new Date());
             modulosRepository.save(modulos);
             return "Registro inativado com sucesso!";
         }
     }
-    
+
 }
