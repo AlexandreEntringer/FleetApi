@@ -47,7 +47,7 @@ public class AgendamentosController {
 
     @PutMapping("/{id}")
     public ResponseEntity<String> updateAgendamentos(@PathVariable Long id, @RequestBody Agendamentos agendamentos) {
-        String resposta = agendamentosService.updateModulos(id, agendamentos);
+        String resposta = agendamentosService.updateAgendamentos(id, agendamentos);
         if ("Registro não encontrado!".equals(resposta)) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resposta);
         } else {

@@ -30,7 +30,7 @@ public class VeiculosService {
     }
     
     public String updateVeiculos(Long id, Veiculos veiculosAtualizado) {
-        // Busca o módulo existente no banco de dados
+        // Busca o veiculo existente no banco de dados
         Veiculos veiculos = veiculosRepository.findById(id).orElse(null);
 
         if (veiculos != null) {

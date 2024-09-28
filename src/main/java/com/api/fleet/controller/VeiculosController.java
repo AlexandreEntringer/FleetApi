@@ -46,7 +46,7 @@ public class VeiculosController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> updateRotas(@PathVariable Long id, @RequestBody Veiculos veiculos) {
+    public ResponseEntity<String> updateVeiculos(@PathVariable Long id, @RequestBody Veiculos veiculos) {
         String resposta = veiculosService.updateVeiculos(id, veiculos);
         if ("Registro não encontrado!".equals(resposta)) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resposta);
@@ -56,7 +56,7 @@ public class VeiculosController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteRotas(@PathVariable Long id) {
+    public ResponseEntity<String> deleteVeiculos(@PathVariable Long id) {
         String resposta = veiculosService.deleteById(id);
         if ("Registro não encontrado!".equals(resposta)) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resposta);

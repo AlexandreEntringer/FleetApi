@@ -31,7 +31,7 @@ public class MotivosService {
     }
 
     public String updateMotivos(Long id, Motivos motivosAtualizado) {
-        // Busca o módulo existente no banco de dados
+        // Busca o motivo existente no banco de dados
         Motivos motivos = motivosRepository.findById(id).orElse(null);
 
         if (motivos != null) {

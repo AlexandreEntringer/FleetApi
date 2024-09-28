@@ -31,7 +31,7 @@ public class RotasService {
     }
 
     public String updateRotas(Long id, Rotas rotasAtualizado) {
-        // Busca o módulo existente no banco de dados
+        // Busca a rota existente no banco de dados
         Rotas rotas = rotasRepository.findById(id).orElse(null);
 
         if (rotas != null) {

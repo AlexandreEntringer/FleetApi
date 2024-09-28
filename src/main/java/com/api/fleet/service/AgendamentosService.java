@@ -14,10 +14,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class AgendamentosService {
-    
+
     @Autowired
     private AgendamentosRepository agendamentosRepository;
-    
+
     public List<Agendamentos> findAll() {
         return agendamentosRepository.findAll();
     }
@@ -30,8 +30,8 @@ public class AgendamentosService {
         return agendamentosRepository.save(agendamentos);
     }
 
-    public String updateModulos(Long id, Agendamentos agendamentosAtualizado) {
-        // Busca o módulo existente no banco de dados
+    public String updateAgendamentos(Long id, Agendamentos agendamentosAtualizado) {
+        // Busca o agendamento existente no banco de dados
         Agendamentos agendamentos = agendamentosRepository.findById(id).orElse(null);
 
         if (agendamentos != null) {
@@ -61,8 +61,8 @@ public class AgendamentosService {
             return "Registro ativado com sucesso!";
         } else {
             agendamentos.setDataInativacao(new Date());
-           agendamentosRepository.save(agendamentos);
+            agendamentosRepository.save(agendamentos);
             return "Registro inativado com sucesso!";
         }
-    }  
+    }
 }
