@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -31,6 +32,17 @@ public class UsuariosController {
     @GetMapping
     public List<Usuarios> getAllUsuarios() {
         return usuariosService.findAll();
+    }
+    
+    @GetMapping("/login")
+    public ResponseEntity<Usuarios> buscaUsuario(
+            @RequestParam(required = true) String username,
+            @RequestParam(required = true) String password) {
+
+        // Chama o service que retorna o histórico (dados de Agendamentos)
+        Optional<Usuarios> usuario = usuariosService.buscaUsuarioPorCredencial(username, password);
+
+        return usuario.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @GetMapping("/{id}")

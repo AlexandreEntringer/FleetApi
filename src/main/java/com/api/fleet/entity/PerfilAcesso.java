@@ -28,10 +28,10 @@ public class PerfilAcesso {
     @Column(name = "id")
     private Long id;
     @JoinColumn(name = "id_modulo",referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Modulos modulo;
     @JoinColumn(name = "id_usuario",referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Usuarios usuario;
     @Column(name = "data_registro")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo")

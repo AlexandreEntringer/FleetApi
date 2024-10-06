@@ -37,6 +37,7 @@ public class VeiculosService {
             veiculos.setPlaca(veiculosAtualizado.getPlaca());
             veiculos.setModelo(veiculosAtualizado.getModelo());
             veiculos.setChassi(veiculosAtualizado.getChassi());
+            veiculos.setStatus(veiculosAtualizado.getStatus());
 
             // Salva as alterações
             veiculosRepository.save(veiculos);

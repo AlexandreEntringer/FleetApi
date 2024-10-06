@@ -63,4 +63,12 @@ public class UsuariosService {
         }
     }
     
+    public Optional<Usuarios> buscaUsuarioPorCredencial(String username, String password){
+        if (username == null || password == null) {
+            throw new IllegalArgumentException("Os campos Usuário e Senha são obrigatórios!");
+        }
+        
+        return usuariosRepository.findByFiltros(username, password);
+    }
+    
 }

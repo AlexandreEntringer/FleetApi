@@ -1,10 +1,12 @@
 package com.api.fleet.service;
 
-import com.api.fleet.entity.Historico;
-import com.api.fleet.repository.HistoricoRepository;
+import com.api.fleet.entity.Agendamentos;
+import com.api.fleet.repository.AgendamentosRepository;
+import com.api.fleet.utility.AgendamentosSpecification;
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,40 +17,13 @@ import org.springframework.stereotype.Service;
 public class HistoricoService {
 
     @Autowired
-    private HistoricoRepository historicoRepository;
+    private AgendamentosRepository agendamentosRepository;
 
-    public List<Historico> findAll() {
-        return historicoRepository.findAll();
+    public List<Agendamentos> buscarHistoricoComFiltros(Long veiculoId, Long usuarioId, Long rotaId, Date dataInicio, Date dataFim) {
+        // Gera a Specification com base nos parâmetros fornecidos
+        Specification<Agendamentos> specification = AgendamentosSpecification.filtros(veiculoId, usuarioId, rotaId, dataInicio, dataFim);
+        
+        // Chama o repositório para buscar os dados de acordo com a Specification
+        return agendamentosRepository.findAll(specification);
     }
-
-    public Optional<Historico> findById(Long id) {
-        return historicoRepository.findById(id);
-    }
-
-    public Historico save(Historico historico) {
-        return historicoRepository.save(historico);
-    }
-
-    public String updateHistorico(Long id, Historico historicoAtualizado) {
-        // Busca o historico existente no banco de dados
-        Historico historico = historicoRepository.findById(id).orElse(null);
-
-        if (historico != null) {
-            historicoRepository.save(historicoAtualizado);
-            return "Registro atualizado com sucesso!";
-        } else {
-            return "Registro não encontrado!";
-        }
-    }
-
-    public String deleteById(Long id) {
-        Historico historico = historicoRepository.findById(id).orElse(null);
-        if (historico == null) {
-            return "Registro não encontrado!";
-        } else {
-            historicoRepository.delete(historico);
-            return "Registro inativado com sucesso!";
-        }
-    }
-
 }

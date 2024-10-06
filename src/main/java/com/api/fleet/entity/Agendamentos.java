@@ -29,16 +29,16 @@ public class Agendamentos {
     @Column(name = "id")
     private Long id;
     @JoinColumn(name = "id_usuario", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Usuarios usuario;
     @JoinColumn(name = "id_motivo", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Motivos motivo;
     @JoinColumn(name = "id_rotas", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Rotas rota;
     @JoinColumn(name = "id_veiculo", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Veiculos veiculo;
     @Column(name = "status")
     @Basic(optional = false)

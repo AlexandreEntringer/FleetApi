@@ -38,4 +38,6 @@ public class Usuarios {
     @Column(name = "data_inativacao")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo")
     private Date dataInativacao;
+    private String username;
+    private String password;
 }
