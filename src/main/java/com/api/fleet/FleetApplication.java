@@ -6,8 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class FleetApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(FleetApplication.class, args);
-	}
+    public String PORT = System.getenv("PORT");
+    public static void main(String[] args) {
+        SpringApplication.run(FleetApplication.class, args);
+    }
 
 }
